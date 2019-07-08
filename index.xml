@@ -2,7 +2,7 @@
   <channel>
       <title>Lethent on Lethent </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://example.org/</link>
+    <link>https://lethent.com/</link>
     <language>en-us</language>
     
     
@@ -10,37 +10,37 @@
     
     <item>
       <title>Search</title>
-      <link>http://example.org/search/</link>
+      <link>https://lethent.com/search/</link>
       <pubDate>Sun, 21 Apr 2019 23:11:28 PDT</pubDate>
       
-      <guid>http://example.org/search/</guid>
+      <guid>https://lethent.com/search/</guid>
       <description>      $(document).ready(function() { $(&#39;#tipue_search_input&#39;).tipuesearch({ &#39;mode&#39; : &#39;json&#39;, &#39;show&#39;: 10, &#39;newWindow&#39;: true, &#39;wholeWords&#39;: false }); });     </description>
     </item>
     
     <item>
       <title>About</title>
-      <link>http://example.org/about/</link>
+      <link>https://lethent.com/about/</link>
       <pubDate>Sun, 21 Apr 2019 22:02:54 PDT</pubDate>
       
-      <guid>http://example.org/about/</guid>
+      <guid>https://lethent.com/about/</guid>
       <description>I am a software developer, working in distributed systems and virtualization. I love to fiddle, and tend to fill my free time with small home computing projects.</description>
     </item>
     
     <item>
       <title>Bad Memory</title>
-      <link>http://example.org/post/bad-memory/</link>
+      <link>https://lethent.com/post/bad-memory/</link>
       <pubDate>Fri, 12 Apr 2019 21:47:03 PDT</pubDate>
       
-      <guid>http://example.org/post/bad-memory/</guid>
+      <guid>https://lethent.com/post/bad-memory/</guid>
       <description>When RAM goes wrong, things go downhill quickly. A bad DIMM will mean that values written by your system will be different when they are read back. If you are not using ECC memory the running software will never even know the error occured. This leads to crashes and kernel panics. Generally, the rule of thumb is to replace a bad DIMM when it is detected. But maybe there is another option?</description>
     </item>
     
     <item>
       <title>Off-Site NAS</title>
-      <link>http://example.org/post/offsite-nas/</link>
+      <link>https://lethent.com/post/offsite-nas/</link>
       <pubDate>Fri, 20 Jul 2018 12:02:53 PDT</pubDate>
       
-      <guid>http://example.org/post/offsite-nas/</guid>
+      <guid>https://lethent.com/post/offsite-nas/</guid>
       <description>Several years after building my home Network Attached Storage (NAS) server, I was spending a lot of time thinking about backups. The ZFS file system running in a RAID-Z2 configuration ensures that it would require 3 disk failures to loose data. However, as has been written about at great length across the Internet, RAID is not equivalent to a backup. Even with disk redundancy you are at risk of system failures, bugs destroying data, floods, fires, and good old fashioned operator error.</description>
     </item>
     

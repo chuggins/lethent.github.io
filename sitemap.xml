@@ -3,95 +3,95 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://example.org/</loc>
+    <loc>https://lethent.com/</loc>
     <lastmod>2019-04-21T23:11:28-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/search/</loc>
+    <loc>https://lethent.com/search/</loc>
     <lastmod>2019-04-21T23:11:28-07:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://example.org/about/</loc>
+    <loc>https://lethent.com/about/</loc>
     <lastmod>2019-04-21T22:02:54-07:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://example.org/post/bad-memory/</loc>
+    <loc>https://lethent.com/post/bad-memory/</loc>
     <lastmod>2019-04-12T21:47:03-07:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://example.org/post/</loc>
+    <loc>https://lethent.com/post/</loc>
     <lastmod>2019-04-12T21:47:03-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/</loc>
+    <loc>https://lethent.com/tags/</loc>
     <lastmod>2019-04-12T21:47:03-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/hackbox/</loc>
+    <loc>https://lethent.com/tags/hackbox/</loc>
     <lastmod>2019-04-12T21:47:03-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/linux/</loc>
+    <loc>https://lethent.com/tags/linux/</loc>
     <lastmod>2019-04-12T21:47:03-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/memtest/</loc>
+    <loc>https://lethent.com/tags/memtest/</loc>
     <lastmod>2019-04-12T21:47:03-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/post/offsite-nas/</loc>
+    <loc>https://lethent.com/post/offsite-nas/</loc>
     <lastmod>2018-07-20T12:02:53-07:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/backup/</loc>
+    <loc>https://lethent.com/tags/backup/</loc>
     <lastmod>2018-07-20T12:02:53-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/freenas/</loc>
+    <loc>https://lethent.com/tags/freenas/</loc>
     <lastmod>2018-07-20T12:02:53-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/offsite/</loc>
+    <loc>https://lethent.com/tags/offsite/</loc>
     <lastmod>2018-07-20T12:02:53-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/system-build/</loc>
+    <loc>https://lethent.com/tags/system-build/</loc>
     <lastmod>2018-07-20T12:02:53-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/categories/</loc>
+    <loc>https://lethent.com/categories/</loc>
     <priority>0</priority>
   </url>
   

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>memtest on Lethent</title>
-    <link>http://example.org/tags/memtest/</link>
+    <link>https://lethent.com/tags/memtest/</link>
     <description>Recent content in memtest on Lethent</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 12 Apr 2019 21:47:03 -0700</lastBuildDate>
     
-	<atom:link href="http://example.org/tags/memtest/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lethent.com/tags/memtest/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Bad Memory</title>
-      <link>http://example.org/post/bad-memory/</link>
+      <link>https://lethent.com/post/bad-memory/</link>
       <pubDate>Fri, 12 Apr 2019 21:47:03 -0700</pubDate>
       
-      <guid>http://example.org/post/bad-memory/</guid>
+      <guid>https://lethent.com/post/bad-memory/</guid>
       <description>When RAM goes wrong, things go downhill quickly. A bad DIMM will mean that values written by your system will be different when they are read back. If you are not using ECC memory the running software will never even know the error occured. This leads to crashes and kernel panics. Generally, the rule of thumb is to replace a bad DIMM when it is detected. But maybe there is another option?</description>
     </item>
     
