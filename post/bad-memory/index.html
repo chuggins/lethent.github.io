@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bad Memory - Lethent</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  <link rel="canonical" href="http://example.org/post/bad-memory/">
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+
+  <link rel="stylesheet" type="text/css" href="http://example.org/css/combined.min.72abfe07b8f5d7fdd625acfaba19a50fc86aad2d4a683d086512e3b108b4a8d4.css">
+
+  
+
+</head>
+<body class="">
+
+<div class="site-wrap">
+  <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://example.org/" class="site-title">Lethent</a>
+      <nav class="site-nav right">
+      <a href="http://example.org//about/">About</a>
+<a href="http://example.org//tags/">Tags</a>
+<a href="http://example.org//contact/">Contact</a>
+
+<form class="navbar-search" action="http://example.org//search/index.html"
+    onsubmit="return validateForm(this.elements['q'].value);">
+    <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input">
+
+</form>
+
+      </nav>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</header>
+
+  <div class="post p2 p-responsive wrap" role="main">
+    <div class="measure">
+      <div class="post-header mb2">
+        <h1 class="py2">Bad Memory</h1>
+        <span class="post-meta">Apr 12, 2019 </span><br>
+        
+      </div>
+
+      <article class="post-content">
+      
+
+<p>When RAM goes wrong, things go downhill quickly. A bad DIMM will mean that values written by your system will be different when they are read back. If you are not using ECC memory the running software  will never even know the error occured. This leads to crashes and kernel panics.  Generally, the rule of thumb is to replace a bad DIMM when it is detected.  But maybe there is another option?</p>
+
+<p>My plucky little <em>hackbox</em> has gone through many iterations.  I tend to get an idea for something I want to do with it and end up combing Ebay for cheap parts.  Doing so is a crapshoot, of course, but that is the point of <em>hackbox</em>&ndash;to screw around and see what I can make work.  For this particular project, I picked up some extra DDR3 RAM and an old Intel motherboard in order to use a i5-2500k that had recently been retired from my desktop.  Running through my standard burn-in, I booted up <a href="https://www.memtest86.com/">Memtest</a> and left it running for the evening. The next morning brought an unpleasant surprise:</p>
+
+<pre><code class="language-md">Tests Passed: 46/48
+
+Lowest Error Address: 0x362DD3070 (13869 MB)
+Highest Error Address: 0x362DD3070 (13869 MB)
+Bits in Error Mask: 0000000000000040
+Bits in Error - Total: 1 Min: 0 Avg: 1
+Max Continuous Errors: 1
+</code></pre>
+
+<p><strong><em>Damnit.</em></strong></p>
+
+<p>Cursing my frupidity, I ran the test a second time.  Same error. While frustrating, this case was somewhat novel to me&ndash;typically in my experience when a DIMM fails it does so with many errors. This error was not only a single address, but it was consistent.  Over and over again repeated test runs always returned the same result. Basically, a few bits in one tiny area of RAM returned 1s instead of 0s, no matter what was written. I decided to table the issue for a while (<em>hackbox</em>, right? this is all part of the adventure).</p>
+
+<h2 id="kernel-save-me">Kernel, save me!</h2>
+
+<p>Several months later I was dealing with some irritating artifacts from the Intel integrated graphics used for driving my display. It occurred to me that the bad address might be affecting memory being utilized by the chip.  I really didn&rsquo;t want to replace the bad DIMM, or even figure out which one it was. After doing some digging, I discovered the Linux <code>memmap</code> kernel argument. With it you can direct Linux to use, protect, or ignore memory in fairly specific ways. In this case, I wanted to tell it to ignore the bad memory address.</p>
+
+<p>It turns out this is easy, or at least easy relative to the normal level of difficulty involved in managing Linux. The syntax is simply <code>memmap=4K$0x362DD3000</code>. Here I am telling the kernel: at address 0x362DD3000, ignore the next 4K bytes of RAM. Given that only a single address was bad the 4k value was probably overkill, but it seemed prudent to ignore the area around the problem as well. At the time I was running Arch Linux with kernel version 5.0.7.</p>
+
+<p>To test, I rebooted the host and hit <code>e</code> during the Grub init screen and manually inserted the argument on the &ldquo;linux&rdquo; line. It should be noted that you have to escape the <code>$</code> character so that Grub ignores it. So:</p>
+
+<pre><code class="language-md">linux /boot/vmlinuz-linux root=UUID=663c149f-4f28-4167-b8f8-38f23fbe26d1 quiet memmap=4K\$0x362DD3000
+</code></pre>
+
+<p>Continue to boot and make sure things run normally.  You can check the output of <code>free</code> and should see less memory reported there.  To make the change permanent, modify <code>/etc/default/grub</code> with the change.  Note here you need yet another level of escaping so that the <code>grub-mkconfig</code> process doesn&rsquo;t strip the characters:</p>
+
+<pre><code>GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet resume=UUID=663c149f-4f28-4167-b8f8-38f23fbe26d1 memmap=4K\\\$0x362DD3000&quot;
+</code></pre>
+
+<p>With that done, re-generate <code>grub.cfg</code> by running:</p>
+
+<pre><code class="language-sh">sudo grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre>
+
+<p>Now reboot.  You can verify the argument was used correctly by executing <code>cat /proc/cmdline</code> and verifying it matches your desired memmap parameter.</p>
+
+<p>I can now use the machine with more confidence, knowing that the known bad address should never cause havoc in my running system. As for my video artifact issue&ndash;well, it may have helped. However, around that time I re-installed the whole system, switched from Xfce to GNOME and confounded a few other variables. Now I have new, different video issues, and I suspect this has more to do with my dodgy Ebay motherboard than anything. An adventure for another day.</p>
+
+<h2 id="references">References</h2>
+
+<p><a href="https://wiki.archlinux.org/index.php/Kernel_parameters#GRUB">https://wiki.archlinux.org/index.php/Kernel_parameters#GRUB</a>
+<a href="https://www.kernel.org/doc/html/v4.14/admin-guide/kernel-parameters.html">https://www.kernel.org/doc/html/v4.14/admin-guide/kernel-parameters.html</a></p>
+
+      </article>
+
+      <p class="post-meta">Tags:&nbsp;
+        
+            
+            <a href="http://example.org//tags/memtest">memtest</a>
+        
+            ,&nbsp;
+            <a href="http://example.org//tags/linux">linux</a>
+        
+            ,&nbsp;
+            <a href="http://example.org//tags/hackbox">hackbox</a>
+        
+      </p>
+
+      
+
+    </div>
+  </div>
+</div>
+    <footer class="footer">
+      <div class="p2 wrap">
+        <div class="measure mt1 center">
+      <nav class="social-icons icons">
+<a class="fa fa-rss rss" href="http://example.org/index.xml"></a>
+
+</nav>
+
+          <small>
+            Copyright &#169; 2017<br>
+            Powered by <a href="http://gohugo.io/" target="_blank">Hugo</a> &amp; <a href="https://github.com/azmelanar/hugo-theme-pixyll" target="_blank">Pixyll</a>
+          </small>
+        </div>
+      </div>
+    </footer>
+
+    
+    <script src="http://example.org/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    
+
+
+</body>
+</html>
+

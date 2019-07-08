@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Lethent</title>
+    <link>http://example.org/tags/</link>
+    <description>Recent content in Tags on Lethent</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 12 Apr 2019 21:47:03 -0700</lastBuildDate>
+    
+	<atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hackbox</title>
+      <link>http://example.org/tags/hackbox/</link>
+      <pubDate>Fri, 12 Apr 2019 21:47:03 -0700</pubDate>
+      
+      <guid>http://example.org/tags/hackbox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>http://example.org/tags/linux/</link>
+      <pubDate>Fri, 12 Apr 2019 21:47:03 -0700</pubDate>
+      
+      <guid>http://example.org/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>memtest</title>
+      <link>http://example.org/tags/memtest/</link>
+      <pubDate>Fri, 12 Apr 2019 21:47:03 -0700</pubDate>
+      
+      <guid>http://example.org/tags/memtest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>backup</title>
+      <link>http://example.org/tags/backup/</link>
+      <pubDate>Fri, 20 Jul 2018 12:02:53 -0700</pubDate>
+      
+      <guid>http://example.org/tags/backup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>freenas</title>
+      <link>http://example.org/tags/freenas/</link>
+      <pubDate>Fri, 20 Jul 2018 12:02:53 -0700</pubDate>
+      
+      <guid>http://example.org/tags/freenas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>offsite</title>
+      <link>http://example.org/tags/offsite/</link>
+      <pubDate>Fri, 20 Jul 2018 12:02:53 -0700</pubDate>
+      
+      <guid>http://example.org/tags/offsite/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>system-build</title>
+      <link>http://example.org/tags/system-build/</link>
+      <pubDate>Fri, 20 Jul 2018 12:02:53 -0700</pubDate>
+      
+      <guid>http://example.org/tags/system-build/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

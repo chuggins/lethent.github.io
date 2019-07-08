@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Off-Site NAS - Lethent</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  <link rel="canonical" href="http://example.org/post/offsite-nas/">
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+
+  <link rel="stylesheet" type="text/css" href="http://example.org/css/combined.min.72abfe07b8f5d7fdd625acfaba19a50fc86aad2d4a683d086512e3b108b4a8d4.css">
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="http://example.org/css/jquery.fancybox.min.5736e3eec0c34bfc288854b7b8d2a8f1e22e9e2e7dae3c8d1ad5dfb2d4734ad0.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
+  <script type="text/javascript" src="http://example.org/js/jquery.fancybox.min.cadda460ccb4c3c01bb45f3d5976f63f5adf8dc3ff1d31cb4fbd3ded4f18e5bf.js" defer></script>
+  <script type="text/javascript" src="http://example.org/js/gallery.fbb1c1cc0a7a1689ec517d7fd4a7946254a4b99b278ffa8cfcbe230fd92fbba8.js" defer></script>
+  
+
+</head>
+<body class="">
+
+<div class="site-wrap">
+  <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://example.org/" class="site-title">Lethent</a>
+      <nav class="site-nav right">
+      <a href="http://example.org//about/">About</a>
+<a href="http://example.org//tags/">Tags</a>
+<a href="http://example.org//contact/">Contact</a>
+
+<form class="navbar-search" action="http://example.org//search/index.html"
+    onsubmit="return validateForm(this.elements['q'].value);">
+    <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input">
+
+</form>
+
+      </nav>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</header>
+
+  <div class="post p2 p-responsive wrap" role="main">
+    <div class="measure">
+      <div class="post-header mb2">
+        <h1 class="py2">Off-Site NAS</h1>
+        <span class="post-meta">Jul 20, 2018 </span><br>
+        
+      </div>
+
+      <article class="post-content">
+      
+
+<p>Several years after building my home Network Attached Storage (NAS) server, I was spending a lot of time thinking about backups.  The ZFS file system running in a RAID-Z2 configuration ensures that it would require 3 disk failures to loose data.  However, as has been written about at great length across the Internet, RAID is not equivalent to a backup.  Even with disk redundancy you are at risk of system failures, bugs destroying data, floods, fires, and good old fashioned operator error.  My grand scheme for backing up the family data was to do so via several mechanisms, one of which was automated off-site replication.  Conveniently, this also gave me a great excuse to build another machine.</p>
+
+<p>First, where would this live?  My parent&rsquo;s place immediately came to mind.  My dad has a fair amount of computer equipment himself, so an extra machine wouldn&rsquo;t be too out of place.  What&rsquo;s more, with his professional work and photography past-time, he had ongoing need for backup storage himself.  He had been meeting that need via external USB drives, but they are a bit of a pain to manage with their high failure rate.  So I proposed a deal: in exchange for some desk space and a few dollars of electricity a year, I would over-provision the machine to the tune of 2x my own needs and make the other half available for his use.  He was immediately on-board, and we were off to the races.</p>
+
+<h2 id="chassis">Chassis</h2>
+
+<p>With my off-site server&rsquo;s home established, it was time to plan the build.  I needed something compact enough to live quietly and unobtrusively tucked away in a corner.  It also needed to be easy to service.  My parents live in another state, so disk replacements would need to be manageable without my physical presence.  Finally, I wanted the power draw to be low so that the NAS wouldn&rsquo;t make much of a bump in the power bill.</p>
+
+<p>I considered the <a href="https://www.amazon.com/dp/B009LHF4FO/?tag=pcpapi-20">Fractal Design Node 304</a>.  I have used Fractal Design for a number of computer builds, and I really like the simplicity and high quality of their cases.  This one seemed to be no exception&ndash;the case is compact and features some smart ventilation choices.  You can see a really excellent writeup of a NAS build in this chassis in the <a href="https://www.ixsystems.com/community/threads/build-report-node-304-x10sdv-tln4f-esxi-freenas-aio.57116/">Freenas forums</a>.  However, the 304 has a few downsides.  Foremost among them, it would definitely <em>not</em> be serviceable by my father.  Accessing the hard drives requires removing the cover and pulling drives from a mounting bracket wedged over the motherboard.  With the cabling in place, it would be a major chore.  The more I considered it, the more this case seemed to be a non-starter.</p>
+
+<p><img src="http://example.org/img/offsite-nas/unas-810a.jpg" alt="U-NAS NSC-810A Chassis" /></p>
+
+<p>Fortunately, I found a great alternative from a company called U-NAS: the <a href="http://www.u-nas.com/xcart/product.php?productid=17640">U-NAS NSC-810A</a> chassis.  It is very compact at 17 liters, and features front panel HDD trays mounted on an SATA/SAS backplane.  Disk replacement will be as simple in this chassis as it possibly could be.  There were only a few things giving me pause.  First, getting it required purchasing directly from the seller in China.  While this isn&rsquo;t terrible, I had never done so and was worried about dealing with any sort of defects.  More concerning, my research turned up several builders who talked at length about how difficult it was to build in the chassis.  They spoke of challenging disassembly and cramped, unmanageable spaces.  I had built small form factor machines before, but maybe this would be more than I wanted to deal with.</p>
+
+<p>In the end I pulled the trigger and was very pleased with the outcome.  The chassis arrived on schedule from an address in China, very well packed and in great condition.  The seller was terse but responsive, so I have no complaints there.  The photos below show the chassis as it was with the outer case removed.  The top bay holds a motherboard up to mATX in size, while the space on the side is sufficiently large for a 1U power supply.  The primary ventilation consists of two 120mm fans blowing out the back, pulling air over the disks.  A third 60mm fan blows out of the top motherboard compartment.  The chassis comes with several USB connectors, along with the SATA power and data cables required for connecting the backplane.  The SATA data cables were very thin, a feature I have never seen in included cables before.  A nice option for a small space, though I ended up replacing them with SAS breakout cables from the HBA.</p>
+
+<p>The U-NAS chassis is definitely not easy to get in to.  Removing the cover starts with unscrewing 8 or so tiny screws, and then getting in to the back fan compartment involves removing even more.  It requires a bit of patience, but in the end it was fun to work with.  I had no troubles completing the build.</p>
+
+<div class="grid">
+    <figure>
+	<a data-fancybox="gallery" href="http://example.org/img/offsite-nas/chassis-front.jpg">
+		<img src="http://example.org/img/offsite-nas/thumb-chassis-front.jpg">
+	</a>
+	<figcaption>
+		<h6>Chassis - Front</h6>
+		<p>The hard drive bays include a latch that opens for easy removal.</p>
+	</figcaption>
+</figure>	
+    <figure>
+	<a data-fancybox="gallery" href="http://example.org/img/offsite-nas/chassis.jpg">
+		<img src="http://example.org/img/offsite-nas/thumb-chassis.jpg">
+	</a>
+	<figcaption>
+		<h6>Chassis - Top</h6>
+		<p>The top bay holds the motherboard and PCI devices.</p>
+	</figcaption>
+</figure>	
+    <figure>
+	<a data-fancybox="gallery" href="http://example.org/img/offsite-nas/chassis-rear.jpg">
+		<img src="http://example.org/img/offsite-nas/thumb-chassis-rear.jpg">
+	</a>
+	<figcaption>
+		<h6>Chassis - Rear</h6>
+		<p>The rear fans both blow out of the case, drawing air through the hard drive bays.</p>
+	</figcaption>
+</figure>	
+    <figure>
+	<a data-fancybox="gallery" href="http://example.org/img/offsite-nas/chassis-side.jpg">
+		<img src="http://example.org/img/offsite-nas/thumb-chassis-side.jpg">
+	</a>
+	<figcaption>
+		<h6>Chassis - Left</h6>
+		<p>The small fan ventilates the motherboard compartment, and the space below houses the power supply.</p>
+	</figcaption>
+</figure>	
+    <figure>
+	<a data-fancybox="gallery" href="http://example.org/img/offsite-nas/rear-fan-chamber-left.jpg">
+		<img src="http://example.org/img/offsite-nas/thumb-rear-fan-chamber-left.jpg">
+	</a>
+	<figcaption>
+		<h6>Rear Fan Compartment</h6>
+		<p>The cables shown here include the SATA power cables and the amazingly thin SATA data cables that come with the chassis.</p>
+	</figcaption>
+</figure>	
+    <figure>
+	<a data-fancybox="gallery" href="http://example.org/img/offsite-nas/rear-fan-chamber-right.jpg">
+		<img src="http://example.org/img/offsite-nas/thumb-rear-fan-chamber-right.jpg">
+	</a>
+	<figcaption>
+		<h6>Rear Fan Compartment, Right Side</h6>
+		<p>Another closeup of the rear compartment.</p>
+	</figcaption>
+</figure>	
+</div>
+
+<h2 id="system-hardware">System Hardware</h2>
+
+<p>With the chassis decided, the next major decision was the computing components themselves.  The SuperMicro X10SDV line of motherboards seemed perfect for this application&ndash;a low power (25W) embedded processor had plenty of pep for a vanilla file server.  It can handle a up to 128GB of ECC RAM, but for my purposes I wouldn&rsquo;t need more than 16GB.  It also features an M.2 PCI slot, which is great for a small form factor system.  In the end, I found a seller on the Freenas forums that had a 2 core <a href="https://www.supermicro.com/products/motherboard/Xeon/D/X10SDV-2C-TLN2F.cfm">X10SDV-2C-TLN2F model</a> and bought it for a great price.</p>
+
+<p>One thing to be aware of&ndash;these boards are designed to live in industrial servers with high velocity case fans blowing on them <sup>24</sup>&frasl;<sub>7</sub>.  They come with no active cooling solution, and do not any include standard mounting points to add one.  My work around was a Noctua 60mm fan zip-tied to the heat sink, using the silicone fan mounts Noctua ships to mitigate vibration.  What it lacks in elegance it certainly makes up for in simplicity.</p>
+
+<p>The remaining hardware was relatively straightforward to pick, with the exception of the HBA (see below).  I chose a power supply from Seasonic that another system builder had success with.  I have bought many Seasonic power supplies, and have yet to have issues with them.  The SSD was the cheapest I could find from a semi-reputable manufacturer.  It basically just needed to be more reliable than a USB thumb drive, which is the alternative option for installing the OS.  After a string of thumb drive failures causing cryptic errors in my NAS, I will never go that route again.  The RAM was a single stick of Kingston ECC, also the cheapest option at the time (though this was unfortunately right in the middle of the RAM shortage, and the price was absurd as a result). For disks, I bought generic cheap desktop drives from Seagate.</p>
+
+<p>While I waited for the arrival of the HBA, I did some burn in testing with the board itself.  I installed <a href="https://www.ubuntu.com/server">Ubuntu Server</a> and stress tested the RAM, CPU and SSD.  Everything worked without issue.</p>
+
+<div class="grid">
+    <figure>
+	<a data-fancybox="gallery" href="http://example.org/img/offsite-nas/cpu-cooler-close.jpg">
+		<img src="http://example.org/img/offsite-nas/thumb-cpu-cooler-close.jpg">
+	</a>
+	<figcaption>
+		<h6>CPU Cooler</h6>
+		<p>Zip ties are not an elegant solution, but an effective one.</p>
+	</figcaption>
+</figure>	
+    <figure>
+	<a data-fancybox="gallery" href="http://example.org/img/offsite-nas/cpu-cooler.jpg">
+		<img src="http://example.org/img/offsite-nas/thumb-cpu-cooler.jpg">
+	</a>
+	<figcaption>
+		<h6>Test Bench</h6>
+		<p>The initial burn in testing of the motherboard/ram/SSD went smoothly.</p>
+	</figcaption>
+</figure>	
+    <figure>
+	<a data-fancybox="gallery" href="http://example.org/img/offsite-nas/disks.jpg">
+		<img src="http://example.org/img/offsite-nas/thumb-disks.jpg">
+	</a>
+	<figcaption>
+		<h6>The Disks</h6>
+		<p>With the arrival of the disks (by far the most expensive component of the project), things were starting to move quickly.</p>
+	</figcaption>
+</figure>	
+</div>
+
+<h2 id="hba-and-final-build">HBA and Final Build</h2>
+
+<p>The biggest wild card in this build for me was definitely the HBA.  I had never worked with one before, and am unfamiliar with the brands and technology involved. Luckily, the issue is documented fairly well at both <a href="https://www.servethehome.com/buyers-guides/top-hardware-components-freenas-nas-servers/top-picks-freenas-hbas/">ServeTheHome</a> and the <a href="https://www.ixsystems.com/community/threads/confused-about-that-lsi-card-join-the-crowd.11901/">Freenas Forums</a>.  In the end, I found a used LSI SAS 9211-8i on Ebay.  On arrival, I plugged it in and booted up.  Re-flashing it with the correct firmware was a bit of a chore, but the instructions in the second link above are easy enough to follow.  It immediately recognized all the disks, and in general was much less of a pain to deal with than I expected.</p>
+
+<p>I had found many people online talking about how hot these cards get, and mine was no exception.  Like the SuperMicro motherboard, these devices are designed to be used in commercial chassis that are ventilated by noisy, powerful fans.  To deal with this, I first removed the heat sink, cleaned off the old, crusty thermal interface material and applied some new thermal paste.  Next, I once again resorted to zip ties to place another 60mm fan directly underneath the heat sink.  That done, there is a steady stream of air blowing directly across the HBA&rsquo;s heat sink, which will have to be good enough.</p>
+
+<p>I spent quite a bit of time tying to find a way to monitor the temperature of the card.  This machine would be running remotely after all, and I found more than one dire warning about corrupted data if it overheated.  However, I couldn&rsquo;t find any indication that this card even includes a temperature sensor.  None of the available management software I could find for FreeBSD appears to have a way of reading it if it does exist.  I cannot fathom a scenario where a commercial venture would not want to monitor the temperatures of this device, so I assume I have just missed something.</p>
+
+<p>The last step was to organize the cabling as much as possible given the limited space, reattach the cover and install the final operating system.  For this build, <a href="https://freenas.org/">Freenas</a> was an obvious choice for me.  It is simple to set up and manage, offers very easy to configure SMB network shares, plus all the goodness of ZFS.</p>
+
+<div class="grid">  
+    <figure>
+	<a data-fancybox="gallery" href="http://example.org/img/offsite-nas/backplane.jpg">
+		<img src="http://example.org/img/offsite-nas/thumb-backplane.jpg">
+	</a>
+	<figcaption>
+		<h6>Disk Backplane</h6>
+		<p>Removing the rear fans allows access to the cabling from the backplane.</p>
+	</figcaption>
+</figure>	
+    <figure>
+	<a data-fancybox="gallery" href="http://example.org/img/offsite-nas/motherboard-rear.jpg">
+		<img src="http://example.org/img/offsite-nas/thumb-motherboard-rear.jpg">
+	</a>
+	<figcaption>
+		<h6>Backplane and Motherboard</h6>
+		<p>A wider shot including the motherboard IO and power supply.</p>
+	</figcaption>
+</figure>	
+    <figure>
+	<a data-fancybox="gallery" href="http://example.org/img/offsite-nas/lsi-card.jpg">
+		<img src="http://example.org/img/offsite-nas/thumb-lsi-card.jpg">
+	</a>
+	<figcaption>
+		<h6>LSI SAS 9211-81</h6>
+		<p>This was taken with the heat sink removed, before I ultimately replaced the old yellow thermal interface material.</p>
+	</figcaption>
+</figure>	
+    <figure>
+	<a data-fancybox="gallery" href="http://example.org/img/offsite-nas/lsi-card-fan.jpg">
+		<img src="http://example.org/img/offsite-nas/thumb-lsi-card-fan.jpg">
+	</a>
+	<figcaption>
+		<h6>HBA Fan Placement</h6>
+		<p>To cool the LSI card, I affixed another 60mm fan blowing up directly below the heat sink.</p>
+	</figcaption>
+</figure>	
+    <figure>
+	<a data-fancybox="gallery" href="http://example.org/img/offsite-nas/lsi-card-fan-installed.jpg">
+		<img src="http://example.org/img/offsite-nas/thumb-lsi-card-fan-installed.jpg">
+	</a>
+	<figcaption>
+		<h6>Cooling the HBA Card</h6>
+		<p>The card is notoriously hot, so directed airflow seemed like the safest option.</p>
+	</figcaption>
+</figure>	
+    <figure>
+	<a data-fancybox="gallery" href="http://example.org/img/offsite-nas/assembled-side.jpg">
+		<img src="http://example.org/img/offsite-nas/thumb-assembled-side.jpg">
+	</a>
+	<figcaption>
+		<h6>Fully Assembled</h6>
+		<p>Here the machine is fully assembled and ready to re-install the cover.</p>
+	</figcaption>
+</figure>	
+</div>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>In the end, I had 20TB of dependable of-site storage for backups.  I will go in to the details of how the replication works in another post.  As of June, 2019, the system has been running quietly without any issue.  See the table below for details on the equipment I ended up purchasing.</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Type</th>
+<th align="left">Item</th>
+<th align="right">Price</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Chassis</td>
+<td align="left"><a href="http://www.u-nas.com/xcart/product.php?productid=17640">U-NAS NSC-810A</a></td>
+<td align="right">$245.00</td>
+</tr>
+
+<tr>
+<td align="left">Memory</td>
+<td align="left"><a href="https://www.amazon.com/dp/B00NLZANBC">Kingston - 16 GB (1 x 16 GB) Registered DDR4-2133 Memory</a></td>
+<td align="right">$203.69</td>
+</tr>
+
+<tr>
+<td align="left">Storage</td>
+<td align="left">8x <a href="https://www.newegg.com/p/N82E16822179299">Seagate - BarraCuda 4 TB 3.5&rdquo; 5400RPM Internal Hard Drive</a></td>
+<td align="right">$835.92</td>
+</tr>
+
+<tr>
+<td align="left">System Disk</td>
+<td align="left"><a href="https://www.amazon.com/HP-120GB-Internal-2LU78AA-ABC/dp/B07611J4G5">HP SSD S700 M.2 2280 120GB SATA</a></td>
+<td align="right">$51.08</td>
+</tr>
+
+<tr>
+<td align="left">Motherboard</td>
+<td align="left"><a href="https://www.supermicro.com/products/motherboard/Xeon/D/X10SDV-2C-TLN2F.cfm">SuperMicro X10SDV-2C-TLN2F</a></td>
+<td align="right">$195.00</td>
+</tr>
+
+<tr>
+<td align="left">Power Supply</td>
+<td align="left"><a href="https://www.amazon.com/Seasonic-SS-350M1U-Supply-ATX12V-EPS12V/dp/B0074FRVNS">SeaSonic SS-350M1U 350W 80 PLUS</a></td>
+<td align="right">$64.99</td>
+</tr>
+
+<tr>
+<td align="left">HBA</td>
+<td align="left"><a href="https://www.amazon.com/SAS9211-8I-8PORT-Int-Sata-Pcie/dp/B002RL8I7M">LSI SAS 9211-8i 8-port 6Gb/s PCI-E Controller Card</a></td>
+<td align="right">$44.88</td>
+</tr>
+
+<tr>
+<td align="left">Cabling</td>
+<td align="left">2x <a href="https://www.newegg.com/p/N82E16816119039">Athena Power 6G Data Cable for RM-3U8G1043 0.5M Mini SAS</a></td>
+<td align="right">$13.00</td>
+</tr>
+
+<tr>
+<td align="left">Fans</td>
+<td align="left">2x <a href="https://www.amazon.com/gp/product/B00VXTANZ4">Noctua 60mm PWM</a></td>
+<td align="right">$32.92</td>
+</tr>
+
+<tr>
+<td align="left">UPS</td>
+<td align="left"><a href="https://www.newegg.com/cyberpower-gx1325u-nema-5-15r/p/N82E16842102238">CyberPower 1325 VA 810 Watts GX1325U</a></td>
+<td align="right">$127.70</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="left"><strong>Total</strong></td>
+<td align="right"><strong>$1814.10</strong></td>
+</tr>
+</tbody>
+</table>
+
+<p>Though a major investment, I expect it to run without issue for years.  I now have a replication target for hourly snapshots of my home NAS, and my father now has SMB shares mounted on all of his Windows machines where he can reliably store data.  With this under my belt, I can&rsquo;t help but wonder how to convince my sister to plug in another NAS in her home across the country.  Cross continental replication!  Another day perhaps&hellip;</p>
+
+      </article>
+
+      <p class="post-meta">Tags:&nbsp;
+        
+            
+            <a href="http://example.org//tags/freenas">freenas</a>
+        
+            ,&nbsp;
+            <a href="http://example.org//tags/backup">backup</a>
+        
+            ,&nbsp;
+            <a href="http://example.org//tags/offsite">offsite</a>
+        
+            ,&nbsp;
+            <a href="http://example.org//tags/system-build">system-build</a>
+        
+      </p>
+
+      
+
+    </div>
+  </div>
+</div>
+    <footer class="footer">
+      <div class="p2 wrap">
+        <div class="measure mt1 center">
+      <nav class="social-icons icons">
+<a class="fa fa-rss rss" href="http://example.org/index.xml"></a>
+
+</nav>
+
+          <small>
+            Copyright &#169; 2017<br>
+            Powered by <a href="http://gohugo.io/" target="_blank">Hugo</a> &amp; <a href="https://github.com/azmelanar/hugo-theme-pixyll" target="_blank">Pixyll</a>
+          </small>
+        </div>
+      </div>
+    </footer>
+
+    
+    <script src="http://example.org/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    
+
+
+</body>
+</html>
+

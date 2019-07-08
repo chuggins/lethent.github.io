@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>system-build on Lethent</title>
+    <link>http://example.org/tags/system-build/</link>
+    <description>Recent content in system-build on Lethent</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 20 Jul 2018 12:02:53 -0700</lastBuildDate>
+    
+	<atom:link href="http://example.org/tags/system-build/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Off-Site NAS</title>
+      <link>http://example.org/post/offsite-nas/</link>
+      <pubDate>Fri, 20 Jul 2018 12:02:53 -0700</pubDate>
+      
+      <guid>http://example.org/post/offsite-nas/</guid>
+      <description>Several years after building my home Network Attached Storage (NAS) server, I was spending a lot of time thinking about backups. The ZFS file system running in a RAID-Z2 configuration ensures that it would require 3 disk failures to loose data. However, as has been written about at great length across the Internet, RAID is not equivalent to a backup. Even with disk redundancy you are at risk of system failures, bugs destroying data, floods, fires, and good old fashioned operator error.</description>
+    </item>
+    
+  </channel>
+</rss>
